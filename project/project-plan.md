@@ -46,9 +46,9 @@ https://mdhopendata.blob.core.windows.net/verkehrsdetektion/Stammdaten_Verkehrsd
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
 1. Data exploration [#1][i1]
-2. Data prepatation [#2][i2]
+2. Data cleaning/prepatation [#2][i2]
 3. Visualizing data on maps [#3][i3]
 
-[i1]: 
-[i2]: 
-[i3]: 
+[i1]: https://github.com/helenakohl/2023-amse-template/issues/1
+[i2]: https://github.com/helenakohl/2023-amse-template/issues/2
+[i3]: https://github.com/helenakohl/2023-amse-template/issues/3
