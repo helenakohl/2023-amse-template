@@ -4,7 +4,7 @@
 
 <!-- Describe your data science project in max. 5 sentences. -->
 
-This project analyzes traffic accidents in Berlin in 2021. It examines what types of accidents are most common and attempts to identify areas with particularly high accident occurrences. Additionally, a second datasource is used to investigate the effect of different factors in traffic (amount, speed...) on the number and severety of accidents. 
+This project analyzes traffic accidents in Berlin in 2021. It examines what types of accidents are most common and attempts to identify areas with particularly high accident occurrences. Additionally, a second datasource is used to investigate the effect of different factors in traffic (amount, speed...) on the number and severety of accidents. This way it aims to suggest strtagies to prevent traffic accidents. 
 
 ## Rationale
 
@@ -45,10 +45,12 @@ https://mdhopendata.blob.core.windows.net/verkehrsdetektion/Stammdaten_Verkehrsd
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Data exploration [#1][i1]
-2. Data cleaning/prepatation [#2][i2]
-3. Visualizing data on maps [#3][i3]
+1. Data pipeline [#3][i3]
+2. Data exploration [#2][i2]
+3. Data cleaning/prepatation [#3][i3]
+4. Visualizing data on maps [#4][i4]
 
-[i1]: https://github.com/helenakohl/2023-amse-template/issues/1
-[i2]: https://github.com/helenakohl/2023-amse-template/issues/2
-[i3]: https://github.com/helenakohl/2023-amse-template/issues/3
+[i1]: 
+[i2]: https://github.com/helenakohl/2023-amse-template/issues/1
+[i3]: https://github.com/helenakohl/2023-amse-template/issues/2
+[i4]: https://github.com/helenakohl/2023-amse-template/issues/3
