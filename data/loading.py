@@ -1,7 +1,11 @@
 import pandas as pd
 
 # Datasource1: Accident data
+# import only works from local file and not directly from url
 
+accidents = pd.read_csv(r'C:\Users\helen\OneDrive\UNI\Data Engineering\data\AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2021_Datensatz.csv', sep=';')
+
+accidents.to_sql('accidents', 'sqlite:///accidents.sqlite', if_exists='replace', index=False)
 
 # Datasource2: Traffic data
 
