@@ -19,8 +19,4 @@ traffic_sensors = pd.read_excel('https://mdhopendata.blob.core.windows.net/verke
 
 traffic = pd.merge(left=traffic, right=traffic_sensors, left_on='detid_15', right_on='DET_ID15')
 
-return(len(traffic))
-
 traffic.to_sql('traffic', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
-
-
