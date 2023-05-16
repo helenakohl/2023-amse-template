@@ -7,7 +7,10 @@ accidents = pd.read_csv(r'C:\Users\helen\OneDrive\UNI\Data Engineering\data\AfSB
 
 accidents.to_sql('accidents', 'sqlite:///accidents.sqlite', if_exists='replace', index=False)
 
+
 # Datasource2: Traffic data
+
+# Import data for every month of 2021
 
 months = {}
 
@@ -17,7 +20,11 @@ for i in range (1,10):
 for i in range (10,13):
     months[i] =  pd.read_csv(f'https://mdhopendata.blob.core.windows.net/verkehrsdetektion/2021/Detektoren%20(einzelne%20Fahrspur)/det_val_hr_2021_{i}.csv.gz', compression='gzip', sep=';')
 
+# Combine all data for 2021
+
 traffic = pd.concat(months)
+
+# Load and add information for every traffic sensor
 
 traffic_sensors = pd.read_excel('https://mdhopendata.blob.core.windows.net/verkehrsdetektion/Stammdaten_Verkehrsdetektion_2022_07_20.xlsx')
 
