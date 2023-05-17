@@ -4,7 +4,7 @@
 
 <!-- Describe your data science project in max. 5 sentences. -->
 
-This project analyzes traffic accidents in Berlin in 2021. It examines what types of accidents are most common and attempts to identify areas with particularly high accident occurrences. Additionally, a second datasource is used to investigate the effect of different factors in traffic (amount, speed...) on the number and severety of accidents. This way it aims to suggest strtagies to prevent traffic accidents. 
+This project analyzes traffic accidents in Berlin in 2021. It examines what types of accidents are most common and attempts to identify areas with particularly high accident occurrences. Additionally, a second datasource is used to investigate the effect of different factors in traffic (amount, speed...) on the number and severety of accidents. This way it aims to suggest strategies to prevent traffic accidents. 
 
 ## Rationale
 
@@ -24,7 +24,7 @@ Analyzing accident and traffic data has several benefits.
 
 ### Datasource1: Statistik der Straßenverkehrsunfälle
 * Metadata URL: https://daten.berlin.de/datensaetze/stra%C3%9Fenverkehrsunf%C3%A4lle-nach-unfallort-berlin-2021
-* Data URL: https://www.statistik-berlin-brandenburg.de/opendata/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2021_Datensatz.csv
+* Data URL: https://download.statistik-berlin-brandenburg.de/c2b6d25afa19b607/8d9164595b8b/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2021_Datensatz.csv
 * Data Type: CSV
 
 The datasource includes information on accidents that happened in Berlin's traffic during 2021. For each road accident the table contains information on the place (district, street, coordinates), time (month, day, hour) and involved vehicles. Further, the acccidents are classified by their severity and type. 
@@ -45,12 +45,14 @@ https://mdhopendata.blob.core.windows.net/verkehrsdetektion/Stammdaten_Verkehrsd
 
 <!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
 
-1. Data pipeline [#3][i3]
+1. Data pipeline [#1][i1]
 2. Data exploration [#2][i2]
 3. Data cleaning/prepatation [#3][i3]
-4. Visualizing data on maps [#4][i4]
+4. Reduce dataset [#4][i4]
+3. Visualizing data on maps [#5][i5]
 
-[i1]: 
+[i1]: https://github.com/helenakohl/2023-amse-template/issues/4
 [i2]: https://github.com/helenakohl/2023-amse-template/issues/1
 [i3]: https://github.com/helenakohl/2023-amse-template/issues/2
-[i4]: https://github.com/helenakohl/2023-amse-template/issues/3
+[i4]: https://github.com/helenakohl/2023-amse-template/issues/5
+[i5]: https://github.com/helenakohl/2023-amse-template/issues/3
