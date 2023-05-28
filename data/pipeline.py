@@ -16,9 +16,10 @@ traffic_sensors = pd.read_excel('https://mdhopendata.blob.core.windows.net/verke
 traffic_june = pd.read_csv('https://mdhopendata.blob.core.windows.net/verkehrsdetektion/2021/Detektoren%20(einzelne%20Fahrspur)/det_val_hr_2021_06.csv.gz', compression='gzip', sep=';')
 
 # add information for traffic sensor
-traffic = pd.merge(left=traffic_june, right=traffic_sensors, left_on='detid_15', right_on='DET_ID15')
+traffic_june = pd.merge(left=traffic_june, right=traffic_sensors, left_on='detid_15', right_on='DET_ID15')
 
-traffic_june.to_sql('traffic', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
+traffic_june.to_sql('traffic_june', 'sqlite:///traffic_june.sqlite', if_exists='replace', index=False)
+
 
 # Import data for every month of 2021
 
@@ -31,11 +32,9 @@ for i in range (10,13):
     months[i] =  pd.read_csv(f'https://mdhopendata.blob.core.windows.net/verkehrsdetektion/2021/Detektoren%20(einzelne%20Fahrspur)/det_val_hr_2021_{i}.csv.gz', compression='gzip', sep=';')
 
 # Combine all data for 2021
-
 traffic = pd.concat(months)
 
 # add information for traffic sensor
-
 traffic = pd.merge(left=traffic, right=traffic_sensors, left_on='detid_15', right_on='DET_ID15')
 
 traffic.to_sql('traffic', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
