@@ -9,6 +9,17 @@ accidents.to_sql('accidents', 'sqlite:///accidents.sqlite', if_exists='replace',
 
 # Datasource2: Traffic data
 
+# load information for every traffic sensor
+traffic_sensors = pd.read_excel('https://mdhopendata.blob.core.windows.net/verkehrsdetektion/Stammdaten_Verkehrsdetektion_2022_07_20.xlsx')
+
+# traffic data for June (month with highest number of accidents)
+traffic_june = pd.read_csv('https://mdhopendata.blob.core.windows.net/verkehrsdetektion/2021/Detektoren%20(einzelne%20Fahrspur)/det_val_hr_2021_06.csv.gz', compression='gzip', sep=';')
+
+# add information for traffic sensor
+traffic = pd.merge(left=traffic_june, right=traffic_sensors, left_on='detid_15', right_on='DET_ID15')
+
+traffic_june.to_sql('traffic', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
+
 # Import data for every month of 2021
 
 months = {}
@@ -23,9 +34,7 @@ for i in range (10,13):
 
 traffic = pd.concat(months)
 
-# Load and add information for every traffic sensor
-
-traffic_sensors = pd.read_excel('https://mdhopendata.blob.core.windows.net/verkehrsdetektion/Stammdaten_Verkehrsdetektion_2022_07_20.xlsx')
+# add information for traffic sensor
 
 traffic = pd.merge(left=traffic, right=traffic_sensors, left_on='detid_15', right_on='DET_ID15')
 
