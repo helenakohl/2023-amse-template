@@ -47,12 +47,12 @@ https://mdhopendata.blob.core.windows.net/verkehrsdetektion/Stammdaten_Verkehrsd
 
 1. Data pipeline [#1][i1]
 2. Data exploration [#2][i2]
-3. Data cleaning/prepatation [#3][i3]
-4. Reduce dataset [#4][i4]
+3. Reduce Datasource2: The traffic dataset is very big and should therefor be reduced by dropping irrelevant information or by limiting the time frame [#3][i3]
+4. Data cleaning/prepatation: convert data types[#4][i4]
 3. Visualizing data on maps [#5][i5]
 
 [i1]: https://github.com/helenakohl/2023-amse-template/issues/4
 [i2]: https://github.com/helenakohl/2023-amse-template/issues/1
-[i3]: https://github.com/helenakohl/2023-amse-template/issues/2
-[i4]: https://github.com/helenakohl/2023-amse-template/issues/5
+[i3]: https://github.com/helenakohl/2023-amse-template/issues/5
+[i4]: https://github.com/helenakohl/2023-amse-template/issues/2
 [i5]: https://github.com/helenakohl/2023-amse-template/issues/3
