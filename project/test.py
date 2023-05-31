@@ -1,12 +1,11 @@
 import os
-import sqlite3
 
-def check_db_file():
-    output = ["sqlite:///../data/accidents.sqlite"]
-    for file in output:
-        if os.path.exists(file):
-            print(f"The database file '{file}' exists.")
-        else:
-            print(f"The database file '{file}' does not exist.")
+def file_exists(file_path):
+    return os.path.exists(file_path)
 
-check_db_file()
+# Example usage
+file_path = "../data/accidents.sqlite"
+if file_exists(file_path):
+    print(f"Test successfull. File found under the following path: {file_path}")
+else:
+    print("Test not succesfull.The file does not exist.")
