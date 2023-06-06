@@ -6,7 +6,7 @@ constraint ValidVerkehr oftype AllowlistConstraint {
   allowlist: ["FV", "RV", "nur DPN"];
 }
 
-valuetype Coordinate oftype integer {
+valuetype Coordinate oftype decimal {
     constraints: [ CooridnateRange ];
 }
 
