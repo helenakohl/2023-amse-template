@@ -1,5 +1,13 @@
+valuetype Verkehr oftype text {
+    constraints: [ ValidVerkehr, NoEmpty ];
+}
+
 constraint ValidVerkehr oftype AllowlistConstraint {
   allowlist: ["FV", "RV", "nur DPN"];
+}
+
+valuetype Coordinate oftype integer {
+    constraints: [ CooridnateRange ];
 }
 
 constraint CooridnateRange oftype RangeConstraint {
@@ -7,28 +15,20 @@ constraint CooridnateRange oftype RangeConstraint {
   upperBound: 90;      
 }
 
+valuetype IFOPT oftype text {
+    constraints: [ NoEmpty, IFOPTFormat ];
+}
+
 constraint IFOPTFormat oftype RegexConstraint {
   regex: /[a-z]{2}:\d+:\d+(:\d+)?(:\d+)?/;
-}
-
-constraint NoEmpty oftype DenylistConstraint {
-  denylist: [""];
-}
-
-valuetype Verkehr oftype text {
-    constraints: [ ValidVerkehr, NoEmpty ];
 }
 
 valuetype NoEmpty oftype text {
     constraints: [ NoEmpty ];
 }
 
-valuetype IFOPT oftype text {
-    constraints: [ NoEmpty, IFOPTFormat ];
-}
-
-valuetype Coordinate oftype integer {
-    constraints: [ CooridnateRange ];
+constraint NoEmpty oftype DenylistConstraint {
+  denylist: [""];
 }
 
 pipeline TrainstopPipeline {
@@ -36,7 +36,6 @@ pipeline TrainstopPipeline {
     block TrainstopTextFileInterpreter oftype TextFileInterpreter {}
     block TrainstopCSVInterpreter oftype CSVInterpreter { 
         delimiter: ";";
-        enclosing: '"';
     }
     block StatusColumnDeleter oftype ColumnDeleter {
         delete: [column J];
@@ -55,7 +54,10 @@ pipeline TrainstopPipeline {
             "Betreiber_Nr" oftype NoEmpty,
         ];
     }
-    block DatabaseLoader oftype SQLiteLoader { table: "trainstops"; file: "./trainstops.sqlite"; }
+    block DatabaseLoader oftype SQLiteLoader { 
+        table: "trainstops"; 
+        file: "./trainstops.sqlite"; 
+    }
     
     DataExtractor
         ->TrainstopTextFileInterpreter
