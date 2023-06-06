@@ -31,6 +31,15 @@ constraint NoEmpty oftype DenylistConstraint {
   denylist: [""];
 }
 
+valuetype NoEmptyInt oftype integer {
+    constraints: [ NoEmptyInt ];
+}
+
+constraint NoEmptyInt oftype RangeConstraint {
+    lowerBound: 0;
+    upperBound: 1000000000;      
+}
+
 pipeline TrainstopPipeline {
     block DataExtractor oftype HttpExtractor { url: "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"; }
     block TrainstopTextFileInterpreter oftype TextFileInterpreter {}
@@ -51,7 +60,7 @@ pipeline TrainstopPipeline {
             "Laenge" oftype Coordinate,
             "Breite" oftype Coordinate,
             "Betreiber_Name" oftype NoEmpty,
-            "Betreiber_Nr" oftype NoEmpty,
+            "Betreiber_Nr" oftype NoEmptyInt,
         ];
     }
     block DatabaseLoader oftype SQLiteLoader { 
