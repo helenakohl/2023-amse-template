@@ -19,7 +19,7 @@ valuetype Verkehr oftype text {
     constraints: [ ValidVerkehr, NoEmpty ];
 }
 
-valuetype NoEmptyText oftype text {
+valuetype NoEmpty oftype text {
     constraints: [ NoEmpty ];
 }
 
@@ -37,7 +37,7 @@ pipeline TrainstopPipeline {
     block TrainstopCSVInterpreter oftype CSVInterpreter { 
         delimiter: ";";
         enclosing: '"';
-        }
+    }
     block StatusColumnDeleter oftype ColumnDeleter {
         delete: [column J];
     }
@@ -45,18 +45,16 @@ pipeline TrainstopPipeline {
         header: true;
         columns: [
             "EVA_NR" oftype text,
-            "DS100" oftype NoEmptyText,
+            "DS100" oftype NoEmpty,
             "IFOPT" oftype IFOPT,
-            "NAME" oftype NoEmptyText,
+            "NAME" oftype NoEmpty,
             "Verkehr" oftype Verkehr,
             "Laenge" oftype Coordinate,
             "Breite" oftype Coordinate,
-            "Betreiber_Name" oftype NoEmptyText,
-            "Betreiber_Nr" oftype NoEmptyText,
+            "Betreiber_Name" oftype NoEmpty,
+            "Betreiber_Nr" oftype NoEmpty,
         ];
     }
-
-
     block DatabaseLoader oftype SQLiteLoader { table: "trainstops"; file: "./trainstops.sqlite"; }
     
     DataExtractor
