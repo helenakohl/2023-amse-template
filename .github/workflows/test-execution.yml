@@ -27,4 +27,5 @@ jobs:
             python-version: 3.11
 
       - name: Execute Test file
-        run: sh project/tests.sh
+        run: |
+          project/tests.sh
