@@ -28,4 +28,4 @@ jobs:
 
       - name: Execute Test file
         run: |
-          project/tests.sh
+          ./main/project/tests.sh
