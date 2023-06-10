@@ -10,13 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up Node.js 16.x
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-            node-version: 16
+          path: main
 
-      - name: Check out repository
-        uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+            node-version: 'lts/*'
+    
+        # Install jayvee
+      - name: Set up Jayvee
+        run: |
+            ./grading/ci/setup_jayvee.sh
+    
+        # Install python
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+            python-version: 3.11
 
       - name: Execute SH file
         run: sh ../project/tests.sh
