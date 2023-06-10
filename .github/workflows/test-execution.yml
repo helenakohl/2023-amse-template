@@ -30,4 +30,4 @@ jobs:
 
       - name: Execute Test file
         run: |
-          /project/tests.sh
+          ./project/tests.sh
