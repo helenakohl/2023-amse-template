@@ -26,4 +26,4 @@ jobs:
 
         # Run test file
       - name: Execute Test file
-        run: sh project/tests.sh
+        run: bash project/tests.sh
