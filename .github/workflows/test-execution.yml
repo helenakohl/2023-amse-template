@@ -24,4 +24,4 @@ jobs:
 
       - name: Execute SH file
         run: |
-            sh C:\Users\helen\OneDrive\UNI\Data Engineering\2023-amse-template\project\tests.sh
+            sh tests.sh
