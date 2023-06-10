@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - project/**
 
 jobs:
   build:
@@ -22,6 +21,6 @@ jobs:
         with:
             python-version: 3.11
 
-      - name: Execute SH file
+      - name: Execute Test file
         run: |
-            /project/tests.sh
+          ../project/tests.sh
