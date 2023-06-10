@@ -15,11 +15,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           path: main
-
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-            node-version: 'lts/*'
     
         # Install python
       - name: Set up Python 3.11
@@ -28,4 +23,4 @@ jobs:
             python-version: 3.11
 
       - name: Execute SH file
-        run: sh tests.sh
+        run: sh project/tests.sh
