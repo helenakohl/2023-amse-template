@@ -23,4 +23,4 @@ jobs:
 
       - name: Execute Test file
         run: |
-          ../project/tests.sh
+          bash ../project/tests.sh
