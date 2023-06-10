@@ -1,0 +1,17 @@
+name: Execute test.sh on push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Execute SH file
+        run: sh ../project/tests.sh
