@@ -8,11 +8,9 @@ df = df[:-4]
 column_names = ['date', 'CIN', 'name', 'petrol', 'diesel', 'gas', 'electro', 'hybrid', 'plugInHybrid', 'others']
 df.columns = column_names
 
-df = df[df['CIN'].str.len() != 5]
+df = df[df['CIN'].str.len() == 5]
 
 postive_columns = ['petrol', 'diesel', 'gas', 'electro', 'hybrid', 'plugInHybrid', 'others']
-
-df = df[(df > 0).any(axis=1)]
 
 
 df.to_sql('cars', 'sqlite:///cars.sqlite', if_exists='replace', index=False)
