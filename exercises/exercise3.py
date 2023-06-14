@@ -14,4 +14,5 @@ postive_columns = ['petrol', 'diesel', 'gas', 'electro', 'hybrid', 'plugInHybrid
 
 df = df[(df > 0).any(axis=1)]
 
+
 df.to_sql('cars', 'sqlite:///cars.sqlite', if_exists='replace', index=False)
