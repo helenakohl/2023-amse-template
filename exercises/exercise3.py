@@ -12,7 +12,6 @@ df = df[df['CIN'].str.len() != 5]
 
 postive_columns = ['petrol', 'diesel', 'gas', 'electro', 'hybrid', 'plugInHybrid', 'others']
 
-for column in postive_columns:
-    df = df[df[column] > 0]
+# drop negative values
 
 df.to_sql('cars', 'sqlite:///cars.sqlite', if_exists='replace', index=False)
