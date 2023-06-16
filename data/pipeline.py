@@ -55,17 +55,18 @@ months = {}
 
 for i in range (1,10):
     months[i] =  pd.read_csv(f'https://mdhopendata.blob.core.windows.net/verkehrsdetektion/2021/Detektoren%20(einzelne%20Fahrspur)/det_val_hr_2021_0{i}.csv.gz', compression='gzip', sep=';')
-    months[i] = months[i].groupby(["detid_15","tag"])[["qualitaet","q_kfz_det_hr","v_kfz_det_hr","q_pkw_det_hr","v_pkw_det_hr","q_lkw_det_hr","v_lkw_det_hr"]].mean()
+    months[i] = months[i].groupby(["detid_15","tag"], as_index=False)[["qualitaet","q_kfz_det_hr","v_kfz_det_hr","q_pkw_det_hr","v_pkw_det_hr","q_lkw_det_hr","v_lkw_det_hr"]].mean()
 
 for i in range (10,13):
     months[i] =  pd.read_csv(f'https://mdhopendata.blob.core.windows.net/verkehrsdetektion/2021/Detektoren%20(einzelne%20Fahrspur)/det_val_hr_2021_{i}.csv.gz', compression='gzip', sep=';')
-    months[i] = months[i].groupby(["detid_15","tag"])[["qualitaet","q_kfz_det_hr","v_kfz_det_hr","q_pkw_det_hr","v_pkw_det_hr","q_lkw_det_hr","v_lkw_det_hr"]].mean()
+    months[i] = months[i].groupby(["detid_15","tag"], as_index=False)[["qualitaet","q_kfz_det_hr","v_kfz_det_hr","q_pkw_det_hr","v_pkw_det_hr","q_lkw_det_hr","v_lkw_det_hr"]].mean()
 
 # Combine all data for 2021
 traffic_2021 = pd.concat(months)
 
 # add information for traffic sensor
 traffic_2021 = pd.merge(left=traffic_2021, right=traffic_sensors, left_on='detid_15', right_on='DET_ID15')
+
 
 # drop irrlevant columns
 traffic_2021 = traffic_2021.drop(columns=irrelevant2)
