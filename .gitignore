@@ -1,5 +1,7 @@
 accidents.sqlite
 traffic.sqlite
-traffic_june.sqlite
+traffic_month.sqlite
+traffic_2021.sqlite
 airports.sqlite
 trainstops.sqlite
+cars.sqlite
