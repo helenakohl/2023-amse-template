@@ -45,7 +45,7 @@ irrelevant2 = ['ABBAUDATUM', 'DEINSTALLIERT', 'KOMMENTAR']
 traffic_month = traffic_month.drop(columns=irrelevant2)
 
 
-traffic_month.to_sql('traffic_month', 'sqlite:///traffic_month.sqlite', if_exists='replace', index=False)
+traffic_month.to_sql('traffic_month', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
 
 
 
@@ -70,4 +70,4 @@ traffic_2021 = pd.merge(left=traffic_2021, right=traffic_sensors, left_on='detid
 # drop irrlevant columns
 traffic_2021 = traffic_2021.drop(columns=irrelevant2)
 
-traffic_2021.to_sql('traffic_2021', 'sqlite:///traffic_2021.sqlite', if_exists='replace', index=False)
+traffic_2021.to_sql('traffic_2021', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
