@@ -4,6 +4,7 @@ import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # Datasource1: Accident data
+
 accidents = pd.read_csv('https://download.statistik-berlin-brandenburg.de/c2b6d25afa19b607/8d9164595b8b/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2021_Datensatz.csv', sep=';')
 
 # drop irrlevant columns
@@ -17,6 +18,21 @@ accidents["XGCSWGS84"] = pd.to_numeric(accidents["XGCSWGS84"])
 accidents["YGCSWGS84"] = [float(str(i).replace(",", ".")) for i in accidents["YGCSWGS84"]]
 accidents["YGCSWGS84"] = pd.to_numeric(accidents["YGCSWGS84"])
 
+# create additional column that indicates all involved in the accident
+to_combine = ['IstRad','IstPKW','IstFuss','IstKrad','IstGkfz','IstSonstige']
+
+# function to combine columns
+def combine_columns(row):
+    combined = []
+    for column in accidents[to_combine]:
+        if row[column] == 1:
+            combined.append(column[3:])
+    return '-'.join(combined)
+
+# Apply the custom function to create the combined column
+accidents['BETEILIGT'] = accidents.apply(combine_columns, axis=1)
+
+# save data to sql database
 accidents.to_sql('accidents', 'sqlite:///accidents.sqlite', if_exists='replace', index=False)
 
 
@@ -44,7 +60,7 @@ traffic_month = pd.merge(left=traffic_month, right=traffic_sensors, left_on='det
 irrelevant2 = ['ABBAUDATUM', 'DEINSTALLIERT', 'KOMMENTAR']
 traffic_month = traffic_month.drop(columns=irrelevant2)
 
-
+# save data to sql database
 traffic_month.to_sql('traffic_month', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
 
 
@@ -71,4 +87,5 @@ traffic_2021 = pd.merge(left=traffic_2021, right=traffic_sensors, left_on='detid
 # drop irrlevant columns
 traffic_2021 = traffic_2021.drop(columns=irrelevant2)
 
+# save data to sql database
 traffic_2021.to_sql('traffic_2021', 'sqlite:///traffic.sqlite', if_exists='replace', index=False)
