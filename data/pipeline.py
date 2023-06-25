@@ -28,7 +28,7 @@ street_mapping = {0: 'trocken', 1: 'nass/feucht', 2: 'winterglatt'}
 accidents['UWOCHENTAG'] = accidents['UWOCHENTAG'].replace(day_mapping)
 accidents['UKATEGORIE'] = accidents['UKATEGORIE'].replace(cat_mapping)
 accidents['UTYP1'] = accidents['UTYP1'].replace(type_mapping)
-accidents['UKATEGORIE'] = accidents['UKATEGORIE'].replace(light_mapping)
+accidents['ULICHTVERH'] = accidents['ULICHTVERH'].replace(light_mapping)
 accidents['USTRZUSTAND'] = accidents['USTRZUSTAND'].replace(street_mapping)
 
 # create additional column that indicates all involved in the accident
