@@ -24,6 +24,7 @@ Analyzing accident and traffic data has several benefits.
 
 ### Datasource1: Statistik der Straßenverkehrsunfälle
 * Metadata URL: https://daten.berlin.de/datensaetze/stra%C3%9Fenverkehrsunf%C3%A4lle-nach-unfallort-berlin-2021
+* Column descriptions: https://download.statistik-berlin-brandenburg.de/d48f9b493b74cf6b/2c34666e6a6a/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2021_Datensatzbeschreibung.pdf
 * Data URL: https://download.statistik-berlin-brandenburg.de/c2b6d25afa19b607/8d9164595b8b/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2021_Datensatz.csv
 * Data Type: CSV
 
