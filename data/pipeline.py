@@ -1,14 +1,11 @@
 import pandas as pd
-import ssl
-
-ssl._create_default_https_context = ssl._create_unverified_context
 
 # Datasource1: Accident data
 
 accidents = pd.read_csv('https://download.statistik-berlin-brandenburg.de/c2b6d25afa19b607/8d9164595b8b/AfSBBB_BE_LOR_Strasse_Strassenverkehrsunfaelle_2021_Datensatz.csv', sep=';')
 
 # drop irrlevant columns
-irrelevant = ['LINREFX', 'LINREFY']
+irrelevant = ['LINREFX', 'LINREFY', 'LAND', 'LOR_ab_2021']
 accidents = accidents.drop(columns=irrelevant)
 
 # Convert datataypes
@@ -24,12 +21,14 @@ cat_mapping = {1: 'Unfall mit Getöteten', 2: 'Unfall mit Schwerverletzten', 3: 
 type_mapping = {1: 'Fahrunfall', 2: 'Abbiegeunfall', 3: 'Einbiegen / Kreuzen-Unfall', 4: 'Überschreiten-Unfall', 5: 'Unfall durch ruhenden Verkehr', 6: 'Unfall im Längsverkehr', 7: 'sonstiger Unfall'}
 light_mapping = {0: 'Tageslicht', 1: 'Dämmerung', 2: 'Dunkelheit'}
 street_mapping = {0: 'trocken', 1: 'nass/feucht', 2: 'winterglatt'}
+bez_mapping = {1: 'Mitte', 2: 'Friedrichshain-Kreuzberg', 3:  'Pankow', 4: 'Charlottenburg-Wilmersdorf', 5: 'Spandau', 6: 'Steglitz-Zehlendorf', 7: 'Tempelhof-Schöneberg', 8: 'Neukölln', 9: 'Treptow-Köpenick', 10: 'Marzahn-Hellersdorf', 11: 'Lichtenberg', 12: 'Reinickendorf'}
 
 accidents['UWOCHENTAG'] = accidents['UWOCHENTAG'].replace(day_mapping)
 accidents['UKATEGORIE'] = accidents['UKATEGORIE'].replace(cat_mapping)
 accidents['UTYP1'] = accidents['UTYP1'].replace(type_mapping)
 accidents['ULICHTVERH'] = accidents['ULICHTVERH'].replace(light_mapping)
 accidents['USTRZUSTAND'] = accidents['USTRZUSTAND'].replace(street_mapping)
+accidents['BEZ'] = accidents['BEZ'].replace(bez_mapping)
 
 # create additional column that indicates all involved in the accident
 to_combine = ['IstRad','IstPKW','IstFuss','IstKrad','IstGkfz','IstSonstige']
