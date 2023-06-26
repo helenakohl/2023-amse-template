@@ -16,11 +16,11 @@ accidents["YGCSWGS84"] = [float(str(i).replace(",", ".")) for i in accidents["YG
 accidents["YGCSWGS84"] = pd.to_numeric(accidents["YGCSWGS84"])
 
 # rename values in categorical data
-day_mapping = {1: 'Sonntag', 2: 'Montag', 3: 'Dienstag', 4: 'Mittwoch', 5: 'Donnerstag', 6: 'Freitag', 7: 'Samstag'}
-cat_mapping = {1: 'Unfall mit Getöteten', 2: 'Unfall mit Schwerverletzten', 3: 'Unfall mit Leichtverletzten'}
-type_mapping = {1: 'Fahrunfall', 2: 'Abbiegeunfall', 3: 'Einbiegen / Kreuzen-Unfall', 4: 'Überschreiten-Unfall', 5: 'Unfall durch ruhenden Verkehr', 6: 'Unfall im Längsverkehr', 7: 'sonstiger Unfall'}
-light_mapping = {0: 'Tageslicht', 1: 'Dämmerung', 2: 'Dunkelheit'}
-street_mapping = {0: 'trocken', 1: 'nass/feucht', 2: 'winterglatt'}
+day_mapping = {1: 'Sunday', 2: 'Monday', 3: 'Tuesday', 4: 'Wednesday', 5: 'Thursday', 6: 'Friday', 7: 'Saturday'}
+cat_mapping = {1: 'with deaths', 2: 'with severely injured', 3: 'with lightly injured'}
+type_mapping = {1: 'driving', 2: 'turning', 3: 'crossing', 4: 'exceeding', 5: 'in stationary traffic', 6: 'in longitudinal traffic', 7: 'others'}
+light_mapping = {0: 'daylight', 1: 'dawn', 2: 'darkness'}
+street_mapping = {0: 'dry', 1: 'wet', 2: 'iced'}
 bez_mapping = {1: 'Mitte', 2: 'Friedrichshain-Kreuzberg', 3:  'Pankow', 4: 'Charlottenburg-Wilmersdorf', 5: 'Spandau', 6: 'Steglitz-Zehlendorf', 7: 'Tempelhof-Schöneberg', 8: 'Neukölln', 9: 'Treptow-Köpenick', 10: 'Marzahn-Hellersdorf', 11: 'Lichtenberg', 12: 'Reinickendorf'}
 
 accidents['UWOCHENTAG'] = accidents['UWOCHENTAG'].replace(day_mapping)
