@@ -5,3 +5,4 @@ traffic_2021.sqlite
 airports.sqlite
 trainstops.sqlite
 cars.sqlite
+temperatures.sqlite

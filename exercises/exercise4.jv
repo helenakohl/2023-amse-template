@@ -28,8 +28,8 @@ pipeline BatteryPipeline {
     }
 
     block DatabaseLoader oftype SQLiteLoader { 
-        table: "batteries"; 
-        file: "./batteries.sqlite"; 
+        table: "temperatures"; 
+        file: "./temperatures.sqlite"; 
     }
 
     DataExtractor
