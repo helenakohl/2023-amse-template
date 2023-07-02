@@ -26,7 +26,6 @@ pipeline BatteryPipeline {
             "Geraet aktiv" oftype text
         ];
     }
-
     block DatabaseLoader oftype SQLiteLoader { 
         table: "temperatures"; 
         file: "./temperatures.sqlite"; 
