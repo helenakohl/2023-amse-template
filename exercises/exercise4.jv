@@ -14,6 +14,10 @@ pipeline BatteryPipeline {
     block ColumnDataSelector oftype CellRangeSelector {
         select: range A1:K*;
     }
+    block HeaderWriter oftype CellWriter {
+        at: cell E1;
+        write: ["Temperatur"];
+    }
     block BatteryTableInterpreter oftype TableInterpreter {
         header: true;
         columns: [
@@ -21,14 +25,14 @@ pipeline BatteryPipeline {
             "Hersteller" oftype text,
             "Model" oftype text,
             "Monat" oftype integer,
-            "Temperatur in °C (DWD)" oftype decimal,
+            "Temperatur" oftype decimal,
             "Batterietemperatur in °C" oftype decimal,
             "Geraet aktiv" oftype text
         ];
     }
     block DatabaseLoader oftype SQLiteLoader { 
         table: "temperatures"; 
-        file: "./temperatures.sqlite"; 
+        file: "temperatures.sqlite"; 
     }
 
     DataExtractor
@@ -37,6 +41,7 @@ pipeline BatteryPipeline {
     ->BatteryTextFileInterpreter
     ->BatteryCSVInterpreter
     ->ColumnDataSelector
+    ->HeaderWriter
     ->BatteryTableInterpreter
     ->DatabaseLoader
 ;}
