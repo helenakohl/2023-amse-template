@@ -14,10 +14,6 @@ pipeline BatteryPipeline {
     block ColumnDataSelector oftype CellRangeSelector {
         select: range A1:K*;
     }
-    block HeaderWriter oftype CellWriter {
-        at: cell E1;
-        write: ["Temperatur"];
-    }
     block BatteryTableInterpreter oftype TableInterpreter {
         header: true;
         columns: [
@@ -41,7 +37,6 @@ pipeline BatteryPipeline {
     ->BatteryTextFileInterpreter
     ->BatteryCSVInterpreter
     ->ColumnDataSelector
-    ->HeaderWriter
     ->BatteryTableInterpreter
     ->DatabaseLoader
 ;}
