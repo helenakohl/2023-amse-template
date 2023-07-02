@@ -40,5 +40,4 @@ pipeline BatteryPipeline {
     ->ColumnDataSelector
     ->BatteryTableInterpreter
     ->DatabaseLoader
-
 ;}
