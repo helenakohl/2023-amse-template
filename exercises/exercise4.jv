@@ -1,3 +1,10 @@
+transform CelsiusToFahrenheit {
+    from tempCelsius oftype decimal;
+    to tempFahrenheit oftype decimal;
+
+    tempFahrenheit: ((tempCelsius * 9) / 5) + 32 ;
+}
+
 
 pipeline BatteryPipeline {
     block DataExtractor oftype HttpExtractor { url: "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip"; }
@@ -5,14 +12,23 @@ pipeline BatteryPipeline {
         archiveType: "zip";
     }
     block BatteryFilePicker oftype FilePicker {
-        path: "data.csv";
+        path: "/data.csv";
     }
     block BatteryTextFileInterpreter oftype TextFileInterpreter {}
+    
     block BatteryCSVInterpreter oftype CSVInterpreter { 
         delimiter: ";";
     }
     block ColumnDataSelector oftype CellRangeSelector {
         select: range A1:K*;
+    }
+    block TemperaturHeaderWriter oftype CellWriter {
+        at: cell E1;
+        write: ["Temperatur"];
+    }
+    block BatterietemperaturHeaderWriter oftype CellWriter {
+        at: cell J1;
+        write: ["Batterietemperatur"];
     }
     block BatteryTableInterpreter oftype TableInterpreter {
         header: true;
@@ -22,9 +38,19 @@ pipeline BatteryPipeline {
             "Model" oftype text,
             "Monat" oftype integer,
             "Temperatur" oftype decimal,
-            "Batterietemperatur in °C" oftype decimal,
+            "Batterietemperatur" oftype decimal,
             "Geraet aktiv" oftype text
         ];
+    }
+    block CelsiusToFahrenheitTransformer1 oftype TableTransformer {
+        inputColumn: 'Temperatur';
+        outputColumn: 'Temperatur';
+        use: CelsiusToFahrenheit;
+    }
+    block CelsiusToFahrenheitTransformer2 oftype TableTransformer {
+        inputColumn: 'Batterietemperatur';
+        outputColumn: 'Batterietemperatur';
+        use: CelsiusToFahrenheit;
     }
     block DatabaseLoader oftype SQLiteLoader { 
         table: "temperatures"; 
@@ -37,6 +63,12 @@ pipeline BatteryPipeline {
     ->BatteryTextFileInterpreter
     ->BatteryCSVInterpreter
     ->ColumnDataSelector
+    ->TemperaturHeaderWriter
+    ->BatterietemperaturHeaderWriter
     ->BatteryTableInterpreter
+    ->CelsiusToFahrenheitTransformer1
+    ->CelsiusToFahrenheitTransformer2
     ->DatabaseLoader
 ;}
+
+
