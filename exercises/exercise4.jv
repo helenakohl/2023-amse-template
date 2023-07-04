@@ -5,6 +5,14 @@ transform CelsiusToFahrenheit {
     tempFahrenheit: ((tempCelsius * 9) / 5) + 32 ;
 }
 
+valuetype NoEmptyInt oftype integer {
+    constraints: [ NoEmptyInt ];
+}
+
+constraint NoEmptyInt oftype RangeConstraint {
+    lowerBound: 0;
+    upperBound: 1000000000;      
+}
 
 pipeline BatteryPipeline {
     block DataExtractor oftype HttpExtractor { url: "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip"; }
@@ -33,7 +41,7 @@ pipeline BatteryPipeline {
     block BatteryTableInterpreter oftype TableInterpreter {
         header: true;
         columns: [
-            "Geraet" oftype integer,
+            "Geraet" oftype NoEmptyInt,
             "Hersteller" oftype text,
             "Model" oftype text,
             "Monat" oftype integer,
