@@ -12,7 +12,7 @@ with zipfile.ZipFile("GTFS.zip") as zip:
 
 #Load data with required columns
 columns_to_keep = [0,2,4,5,6]  
-data = pd.read_csv('GTFS\stops.txt', delimiter=',', usecols = columns_to_keep)
+data = pd.read_csv('GTFS/stops.txt', delimiter=',', usecols = columns_to_keep)
  
 data = data[data['zone_id'] == 2001]
 
