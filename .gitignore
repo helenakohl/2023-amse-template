@@ -6,3 +6,6 @@ airports.sqlite
 trainstops.sqlite
 cars.sqlite
 temperatures.sqlite
+GTFS.zip
+gtfs.sqlite
+GTFS
